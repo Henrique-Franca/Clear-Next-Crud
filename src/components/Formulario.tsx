@@ -39,7 +39,7 @@ export default function Formulario(props: FormularioProps){
                 valor={idade}
                 valorMudou={setIdade}
             />
-            <div className="mt-3">
+            <div className="flex justify-end mt-7">
                 <Botao cor="blue" className="mr-2">
                     {id ? 'Alterar' : 'Salvar'}
                 </Botao>
