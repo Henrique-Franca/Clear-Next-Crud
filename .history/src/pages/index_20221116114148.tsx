@@ -18,7 +18,9 @@ export default function Home() {
   useEffect(obterTodos,[])
 
   function obterTodos(){
+
     repo.obterTodos().then(clientes => {
+
       setClientes(clientes)
       setVisivel('tabela')
 
@@ -30,10 +32,9 @@ export default function Home() {
     setCliente(cliente)
     setVisivel('form')
   }
-   
-  async function clienteExcluido(cliente: Cliente){
-    await repo.excluir(cliente)
-    obterTodos()
+  
+  function clienteExcluido(cliente: Cliente){
+    console.log(`Excluir... ${cliente.nome}`)
   }
 
   function novoCliente(){
@@ -42,10 +43,10 @@ export default function Home() {
 
   }
 
-  async function salvarCliente(cliente:Cliente){
+  function salvarCliente(cliente:Cliente){
 
-    await repo.salvar(cliente)
-    obterTodos()
+    repo.salvar(cliente)
+    setVisivel('tabela')
 
   }
 

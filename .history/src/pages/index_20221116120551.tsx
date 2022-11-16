@@ -26,15 +26,16 @@ export default function Home() {
 
   }
 
+  function clienteExcluido(cliente: Cliente){
+    console.log(`Excluir... ${cliente.nome}`)
+  }
+
   function clienteSelecionado(cliente: Cliente){
     setCliente(cliente)
     setVisivel('form')
   }
-   
-  async function clienteExcluido(cliente: Cliente){
-    await repo.excluir(cliente)
-    obterTodos()
-  }
+  
+  
 
   function novoCliente(){
     setCliente(Cliente.vazio())

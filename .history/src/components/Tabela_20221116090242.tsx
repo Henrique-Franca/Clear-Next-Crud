@@ -52,7 +52,7 @@ export default function Tabela(props: TabelaProps){
                 ):false}
 
                 {props.clienteExcluido ? (
-                      <button onClick={()=> props.clienteExcluido?.(cliente)} className={`
+                      <button onClick={()=> props.clienteSelecionado?.(cliente)} className={`
                       flex justify-center items-center
                       text-red-500 rounded-full p-2 m-1
                       hover:bg-purple-50
