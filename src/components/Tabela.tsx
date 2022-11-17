@@ -1,73 +1,67 @@
-import Cliente from "../core/Cliente"
-import { IconeEdicao, IconeLixo } from "./Icones"
+import Cliente from "../core/Cliente";
+import { IconeEdicao, IconeLixo } from "./Icones";
 
-interface TabelaProps{
-
-   cliente: Cliente[] 
-   clienteSelecionado?: (cliente: Cliente) =>void
-   clienteExcluido?: (cliente: Cliente) =>void
-
+interface TabelaProps {
+    clientes: Cliente[]
+    clienteSelecionado?: (cliente: Cliente) => void
+    clienteExcluido?: (cliente: Cliente) => void
 }
 
-export default function Tabela(props: TabelaProps){
+export default function Tabela(props: TabelaProps) {
 
-    const exibiracoes = props.clienteExcluido || props.clienteSelecionado
+    const exibirAcoes = props.clienteExcluido || props.clienteSelecionado
 
-    function renderizarCabecalho(){
+    function renderizarCabecalho() {
         return (
             <tr>
                 <th className="text-left p-4">Código</th>
                 <th className="text-left p-4">Nome</th>
                 <th className="text-left p-4">Idade</th>
-                {exibiracoes ? <th className=" p-4">Ações</th> : false}
+                {exibirAcoes ? <th className="p-4">Ações</th> : false}
             </tr>
         )
     }
 
-    function renderizarDados(){
-        return props.cliente?.map((cliente, i)=>{
-            return(
+    function renderizarDados() {
+        return props.clientes?.map((cliente, i) => {
+            return (
                 <tr key={cliente.id}
-                    className={`${i % 2 === 0 ? 'bg-purple-200' : 'bg-purple-100' }`}>
+                    className={`${i % 2 === 0 ? 'bg-purple-200' : 'bg-purple-100'}`}>
                     <td className="text-left p-4">{cliente.id}</td>
                     <td className="text-left p-4">{cliente.nome}</td>
                     <td className="text-left p-4">{cliente.idade}</td>
-                    {exibiracoes ? renderizarAcoes(cliente) : false}
+                    {exibirAcoes ? renderizarAcoes(cliente) : false}
                 </tr>
             )
         })
     }
 
-    function renderizarAcoes(cliente:Cliente){
-        return(
-            <td className="flex justify-centers">
+    function renderizarAcoes(cliente: Cliente) {
+        return (
+            <td className="flex justify-center">
                 {props.clienteSelecionado ? (
-                     <button onClick={()=> props.clienteSelecionado?.(cliente)} className={`
-                     flex justify-center items-center
-                     text-green-600 rounded-full p-2 m-1
-                     hover:bg-purple-50
-                     `}>
-                         {IconeEdicao}
-                     </button>
-                ):false}
-
+                    <button onClick={() => props.clienteSelecionado?.(cliente)} className={`
+                        flex justify-center items-center
+                        text-green-600 rounded-full p-2 m-1
+                        hover:bg-purple-50
+                    `}>
+                        {IconeEdicao}
+                    </button>
+                ) : false}
                 {props.clienteExcluido ? (
-                      <button onClick={()=> props.clienteExcluido?.(cliente)} className={`
-                      flex justify-center items-center
-                      text-red-500 rounded-full p-2 m-1
-                      hover:bg-purple-50
-                      `}>
-                          {IconeLixo}
-                      </button>
-                ):false}
-               
-               
-
+                    <button onClick={() => props.clienteExcluido?.(cliente)} className={`
+                        flex justify-center items-center
+                        text-red-500 rounded-full p-2 m-1
+                        hover:bg-purple-50
+                    `}>
+                        {IconeLixo}
+                    </button>
+                ) : false}
             </td>
         )
     }
 
-    return(
+    return (
         <table className="w-full rounded-xl overflow-hidden">
             <thead className={`
                 text-gray-100
@@ -80,5 +74,4 @@ export default function Tabela(props: TabelaProps){
             </tbody>
         </table>
     )
-
 }

@@ -1,20 +1,12 @@
 import firebase from "firebase";
 import 'firebase/firestore'
 
-if(!firebase.apps.length){
-
+if (!firebase.apps.length) {
     firebase.initializeApp({
-        apiKey: "AIzaSyC5_SVBLQPz9DfTBpTxdgGuK8l-x9x8LhI",
-    authDomain: "next-crud-3b3c1.firebaseapp.com",
-    projectId: "next-crud-3b3s5",
-    storageBucket: "next-crud-3b3c1.appspot.com",
-    messagingSenderId: "389517646113",
-    appId: "1:389517646113:web:6d5686d2523acac5090660"
+        apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+        authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     })
-
-
 }
 
 export default firebase
-
-
